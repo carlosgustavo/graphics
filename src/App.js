@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import CustomSelect from './CustomSelect';
+import LogoLaclaw from './laclaw.png'
+import LogoGrafico from './grafico.png'
+
+
 
 function App() {
   return (
-    <div className="App">
+    <body className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <img src={LogoLaclaw} alt="Logo Laclaw" className='logo-laclaw' />
+        <div className='content-logo-grafico'>
+        <h1> Visualizações de dados </h1>
+        <img src={LogoGrafico} alt="Logo Grafico" className='logo-grafico' />
+        </div>
       </header>
-    </div>
+     <CustomSelect/>
+    </body>
   );
 }
 
