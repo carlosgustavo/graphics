@@ -12,15 +12,15 @@ cd front
 npm install ou yarn install
 
 ### `Tecnologias Utilizadas`
-React.js
-React DOM
-React Scripts
-ESLint (configuração padrão do Create React App)
-Testing Library (Jest, React Testing Library)
-Web Vitals
-Ant Design (versão 5.18.3)
-ApexCharts (versão 3.49.1)
-React ApexCharts (versão 1.4.1)
+React.js,
+React DOM,
+React Scripts,
+ESLint (configuração padrão do Create React App),
+Testing Library (Jest, React Testing Library),
+Web Vitals,
+Ant Design (versão 5.18.3),
+ApexCharts (versão 3.49.1),
+React ApexCharts (versão 1.4.1),
 
 ### `npm test`
 
