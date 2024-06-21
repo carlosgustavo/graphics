@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Clone o repositório
 
-git clone https://github.com/seu-usuario/front.git
-cd front
+git@github.com:carlosgustavo/graphics.git
+cd graphics
 
 ### `Instale as dependências`
 
