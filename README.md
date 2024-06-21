@@ -2,17 +2,25 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Clone o repositório
 
-In the project directory, you can run:
+git clone https://github.com/seu-usuario/front.git
+cd front
 
-### `npm start`
+### `Instale as dependências`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm install ou yarn install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `Tecnologias Utilizadas`
+React.js
+React DOM
+React Scripts
+ESLint (configuração padrão do Create React App)
+Testing Library (Jest, React Testing Library)
+Web Vitals
+Ant Design (versão 5.18.3)
+ApexCharts (versão 3.49.1)
+React ApexCharts (versão 1.4.1)
 
 ### `npm test`
 
