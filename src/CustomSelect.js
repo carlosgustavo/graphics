@@ -5,6 +5,8 @@ import Page1 from './page/Page1'
 import Page2 from './page/Page2'
 import Page3 from './page/Page3'
 import Page4 from './page/Page4'
+import Page5 from './page/Page5'
+
 
 const { Option } = Select;
 
@@ -48,6 +50,11 @@ const CustomSelect = () => {
        {selectedValue === "option4" && (
         <div style={{ marginTop: 20 }}>
           <Page4 data={data4} />
+        </div>
+      )}
+      {selectedValue === "option5" && (
+        <div style={{ marginTop: 20 }}>
+          <Page5 data={data5} />
         </div>
       )}
     </div>
