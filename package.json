@@ -36,6 +36,8 @@
     ]
   },
   "devDependencies": {
-    "antd": "^5.18.3"
+    "antd": "^5.18.3",
+    "apexcharts": "^3.49.1",
+    "react-apexcharts": "^1.4.1"
   }
 }

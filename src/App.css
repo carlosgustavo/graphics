@@ -28,9 +28,7 @@ h1{
 .logo-grafico{
   width: 58px;
   padding-left: 10px;
-
 }
-
 
 .content {
   display: flex;
@@ -41,4 +39,13 @@ h1{
 .center-pagination {
   display: flex !important;
   justify-content: center !important;
+}
+.select-columns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart{
+  width: 910px;
 }
