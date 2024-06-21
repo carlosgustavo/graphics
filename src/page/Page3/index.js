@@ -6,8 +6,10 @@ const { Option } = Select;
 
 const Page3 = ({ data }) => {
 
+  // Estado para controlar o tipo de gráfico
   const [typeChart, setTypeChart] = useState(false);
-  // State to manage which columns are visible
+
+  // Estado para controlar quais colunas são visíveis na tabela
   const [visibleColumns, setVisibleColumns] = useState({
     nome: true,
     departamento: true,
@@ -20,21 +22,23 @@ const Page3 = ({ data }) => {
     fabricante: true,
   });
 
-  // State to manage if the Salário and Anos de Experiência fields should be summed
+  // Estado para controlar se os campos de Salário e Anos de Experiência devem ser somados
   const [sumFields, setSumFields] = useState({
     salario: false,
     anos_experiencia: false,
   });
   
+  // Estado para controlar se os detalhes devem ser mostrados
   const [showDetails, setShowDetails] = useState(false);
 
+  // Função para lidar com a mudança na Checkbox para mostrar detalhes no gráfico
   const handleShowDetailsChange = (e) => {
     const isChecked = e.target.checked;
     setShowDetails(isChecked);
     setTypeChart(!showDetails);
   };
 
-  // Handle Select change for column visibility
+  // Função para lidar com a mudança no Select para alterar a visibilidade das colunas
   const handleVisibleChange = (selectedKeys) => {
     const newVisibleColumns = Object.keys(visibleColumns).reduce((acc, key) => {
       acc[key] = selectedKeys.includes(key);
@@ -43,7 +47,7 @@ const Page3 = ({ data }) => {
     setVisibleColumns(newVisibleColumns);
   };
 
-  // Handle Select change for summing fields
+  // Função para lidar com a mudança no Select para somar campos
   const handleSumChange = (selectedKeys) => {
     const newSumFields = Object.keys(sumFields).reduce((acc, key) => {
       acc[key] = selectedKeys.includes(key);
@@ -52,12 +56,12 @@ const Page3 = ({ data }) => {
     setSumFields(newSumFields);
   };
 
-  // Calculate sum of a specified field
+  // Função para calcular a soma de um campo especificado
   const calculateSum = (field) => {
     return data.reduce((acc, record) => acc + (record[field] || 0), 0);
   };
 
-  // Define table columns
+  // Definição das colunas da tabela
   const allColumns = [
     { title: 'Nome', dataIndex: 'nome', key: 'nome', sorter: (a, b) => a.nome.localeCompare(b.nome) },
     { title: 'Departamento', dataIndex: 'departamento', key: 'departamento', sorter: (a, b) => a.departamento.localeCompare(b.departamento) },
@@ -70,14 +74,14 @@ const Page3 = ({ data }) => {
     { title: 'Fabricante', dataIndex: 'fabricante', key: 'fabricante' },
   ];
 
-  // Filter columns based on visibility state
+  // Filtra as colunas com base no estado de visibilidade
   const columns = allColumns.filter(column => visibleColumns[column.key]);
 
-  // Calculate total salaries and total years of experience for rendering in the footer
+  // Calcula o total de salários e total de anos de experiência para exibir no rodapé da tabela
   const totalSalario = sumFields.salario ? calculateSum('salario') : null;
   const totalAnosExperiencia = sumFields.anos_experiencia ? calculateSum('anos_experiencia') : null;
 
-  // Prepare data for chart (if needed)
+  // Prepara os dados para o gráfico (se necessário)
   const chartCategories = data.map(record => record.nome);
   const chartDataSalario = data.map(record => record.salario);
   const chartDataAnosExperiencia = data.map(record => record.anos_experiencia);

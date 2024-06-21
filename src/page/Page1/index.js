@@ -7,8 +7,10 @@ const { Option } = Select;
 
 const Page1 = ({ data }) => {
 
+  // Estado para controlar o tipo de gráfico
   const [typeChart, setTypeChart] = useState(false)
-  // State to manage which columns are visible
+  
+  // Estado para gerenciar quais colunas são visíveis
   const [visibleColumns, setVisibleColumns] = useState({
     nome: true,
     categoria: true,
@@ -20,20 +22,23 @@ const Page1 = ({ data }) => {
     fabricante: true,
   });
 
-
-  // State to manage if the Preço and Quantidade fields should be summed
+  // Estado para gerenciar se os campos de Preço e Quantidade devem ser somados
   const [sumFields, setSumFields] = useState({
     preco: false,
     quantidade: false,
   });
+  
+  // Estado para controlar se os detalhes devem ser mostrados
   const [showDetails, setShowDetails] = useState(false);
 
+  // Manipula a mudança na Checkbox para mostrar detalhes no gráfico
   const handleShowDetailsChange = (e) => {
     const isChecked = e.target.checked;
     setShowDetails(isChecked);
     setTypeChart(!showDetails);
   };
-  // Handle Select change for column visibility
+  
+  // Manipula a mudança no Select para mudar a visibilidade das colunas
   const handleVisibleChange = (selectedKeys) => {
     const newVisibleColumns = Object.keys(visibleColumns).reduce((acc, key) => {
       acc[key] = selectedKeys.includes(key);
@@ -42,7 +47,7 @@ const Page1 = ({ data }) => {
     setVisibleColumns(newVisibleColumns);
   };
 
-  // Handle Select change for summing fields
+  // Manipula a mudança no Select para somar campos
   const handleSumChange = (selectedKeys) => {
     const newSumFields = Object.keys(sumFields).reduce((acc, key) => {
       acc[key] = selectedKeys.includes(key);
@@ -51,7 +56,7 @@ const Page1 = ({ data }) => {
     setSumFields(newSumFields);
   };
 
-  // Calculate sum of a specified field
+  // Calcula a soma de um campo especificado
   const calculateSum = (field) => {
     return data.reduce((acc, record) => acc + (record[field] || 0), 0);
   };
@@ -68,14 +73,14 @@ const Page1 = ({ data }) => {
     { title: 'Fabricante', dataIndex: 'fabricante', key: 'fabricante' },
   ];
 
-  // Filter columns based on visibility state
+  // Filtra as colunas com base no estado de visibilidade
   const columns = allColumns.filter(column => visibleColumns[column.key]);
 
-  // Calculate total prices and quantities for rendering in the footer
+  // Calcula os totais de preços e quantidades para exibição no rodapé
   const totalPreco = sumFields.preco ? calculateSum('preco') : null;
   const totalQuantidade = sumFields.quantidade ? calculateSum('quantidade') : null;
 
-  // Prepare data for chart
+  // Prepara os dados para o gráfico
   const chartCategories = data.map(record => record.nome);
   const chartDataPreco = data.map(record => record.preco);
   const chartDataQuantidade = data.map(record => record.quantidade);
@@ -85,8 +90,7 @@ const Page1 = ({ data }) => {
       {
         !typeChart && (
           <>
-            <Row gutter={[16, 16]} className='select-columns'
-            >
+            <Row gutter={[16, 16]} className='select-columns'>
               <Col span={24}>
                 <Divider>Escolha as colunas para visualizar</Divider>
                 <Select
@@ -106,9 +110,6 @@ const Page1 = ({ data }) => {
             <Row gutter={[16, 16]} style={{ marginTop: 20 }} className='select-columns'>
               <Col span={24}>
                 <Divider>Escolha os campos para somar</Divider>
-                <div>
-
-                </div>
                 <Select
                   mode="multiple"
                   placeholder="Selecionar campos para somar"
@@ -123,7 +124,6 @@ const Page1 = ({ data }) => {
                   ))}
                 </Select>
               </Col>
-
             </Row>
           </>
         )
@@ -138,7 +138,6 @@ const Page1 = ({ data }) => {
       {
         typeChart ? (
           <>
-
             <Divider>Gráfico de Preço e Quantidade por Nome</Divider>
             <div className='chart'>
               <Chart1
@@ -175,7 +174,6 @@ const Page1 = ({ data }) => {
           </>
         )
       }
-
     </div>
   );
 };

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Table, Select, Divider, Row, Col, Checkbox } from 'antd';
-import Chart4 from '../Chart4';
+import Chart4 from '../Chart4'; // Importa o componente de gráfico Chart4
 
 const { Option } = Select;
 
 const Page4 = ({ data }) => {
-
+  // Estado para controlar o tipo de gráfico a ser exibido
   const [typeChart, setTypeChart] = useState(false);
-  // State to manage which columns are visible
+
+  // Estado para controlar quais colunas são visíveis na tabela
   const [visibleColumns, setVisibleColumns] = useState({
     nome: true,
     departamento: true,
@@ -19,44 +20,46 @@ const Page4 = ({ data }) => {
     fabricante: true,
   });
 
-  // State to manage if the Orcamento and Duracao Meses fields should be summed
+  // Estado para controlar se os campos de Orcamento e Duracao Meses devem ser somados
   const [sumFields, setSumFields] = useState({
     orcamento: false,
     duracao_meses: false,
   });
-  
+
+  // Estado para controlar se os detalhes devem ser mostrados
   const [showDetails, setShowDetails] = useState(false);
 
+  // Função para lidar com a mudança na Checkbox para mostrar detalhes no gráfico
   const handleShowDetailsChange = (e) => {
     const isChecked = e.target.checked;
     setShowDetails(isChecked);
-    setTypeChart(!showDetails);
+    setTypeChart(!showDetails); // Alterna o tipo de gráfico entre true e false
   };
 
-  // Handle Select change for column visibility
+  // Função para lidar com a mudança no Select para alterar a visibilidade das colunas
   const handleVisibleChange = (selectedKeys) => {
     const newVisibleColumns = Object.keys(visibleColumns).reduce((acc, key) => {
-      acc[key] = selectedKeys.includes(key);
+      acc[key] = selectedKeys.includes(key); // Define a visibilidade com base nas colunas selecionadas
       return acc;
     }, {});
-    setVisibleColumns(newVisibleColumns);
+    setVisibleColumns(newVisibleColumns); // Atualiza o estado de colunas visíveis
   };
 
-  // Handle Select change for summing fields
+  // Função para lidar com a mudança no Select para somar campos
   const handleSumChange = (selectedKeys) => {
     const newSumFields = Object.keys(sumFields).reduce((acc, key) => {
-      acc[key] = selectedKeys.includes(key);
+      acc[key] = selectedKeys.includes(key); // Define quais campos devem ser somados
       return acc;
     }, {});
-    setSumFields(newSumFields);
+    setSumFields(newSumFields); // Atualiza o estado de campos para soma
   };
 
-  // Calculate sum of a specified field
+  // Função para calcular a soma de um campo especificado
   const calculateSum = (field) => {
-    return data.reduce((acc, record) => acc + (record[field] || 0), 0);
+    return data.reduce((acc, record) => acc + (record[field] || 0), 0); // Calcula a soma do campo especificado em todos os registros
   };
 
-  // Define table columns
+  // Definição das colunas da tabela
   const allColumns = [
     { title: 'Nome', dataIndex: 'nome', key: 'nome', sorter: (a, b) => a.nome.localeCompare(b.nome) },
     { title: 'Departamento', dataIndex: 'departamento', key: 'departamento', sorter: (a, b) => a.departamento.localeCompare(b.departamento) },
@@ -68,22 +71,22 @@ const Page4 = ({ data }) => {
     { title: 'Fabricante', dataIndex: 'fabricante', key: 'fabricante' },
   ];
 
-  // Filter columns based on visibility state
+  // Filtra as colunas com base no estado de visibilidade
   const columns = allColumns.filter(column => visibleColumns[column.key]);
 
-  // Calculate total orcamento and total duracao_meses for rendering in the footer
+  // Calcula o total de orçamento e total de duração_meses para exibir no rodapé da tabela
   const totalOrcamento = sumFields.orcamento ? calculateSum('orcamento') : null;
   const totalDuracaoMeses = sumFields.duracao_meses ? calculateSum('duracao_meses') : null;
 
-  // Prepare data for chart (if needed)
-  const chartCategories = data.map(record => record.nome);
-  const chartDataOrcamento = data.map(record => record.orcamento);
-  const chartDataDuracaoMeses = data.map(record => record.duracao_meses);
+  // Prepara os dados para o gráfico (se necessário)
+  const chartCategories = data.map(record => record.nome); // Categorias para o gráfico baseadas nos nomes dos projetos
+  const chartDataOrcamento = data.map(record => record.orcamento); // Dados de orçamento para o gráfico
+  const chartDataDuracaoMeses = data.map(record => record.duracao_meses); // Dados de duração em meses para o gráfico
 
   return (
     <div>
       {
-        !typeChart && (
+        !typeChart && ( // Renderiza apenas se typeChart for falso
           <>
             <Row gutter={[16, 16]} className='select-columns'>
               <Col span={24}>
@@ -131,7 +134,7 @@ const Page4 = ({ data }) => {
         </Col>
       </Row>
       {
-        typeChart ? (
+        typeChart ? ( // Renderiza o gráfico se typeChart for verdadeiro
           <>
             <Divider>Gráfico de Orçamento e Duração por Nome do Projeto</Divider>
             <div className='chart'>
@@ -144,7 +147,8 @@ const Page4 = ({ data }) => {
             </div>
           </>
         ) : (
-          <>
+          <> 
+            {/* Renderiza a tabela se typeChart for falso */}
             <Table
               columns={columns}
               dataSource={data}

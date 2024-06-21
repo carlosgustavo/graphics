@@ -6,30 +6,30 @@ const Chart1 = ({ categories, dataPreco, dataQuantidade }) => {
     <Chart
       options={{
         chart: {
-          type: 'line', // Use a line chart for one of the series
+          type: 'line', // Utiliza um gráfico de linha para uma das séries
         },
         xaxis: {
-          categories: categories,
+          categories: categories, // Define as categorias no eixo X
         },
         yaxis: [
           {
             title: {
-              text: 'Quantidade',
+              text: 'Quantidade', // Título do eixo Y para a série de Quantidade
             },
           },
           {
             opposite: true,
             title: {
-              text: 'Preço',
+              text: 'Preço', // Título do eixo Y para a série de Preço
             },
           },
         ],
         stroke: {
-          width: [0, 4], // Set the width of the lines (0 for bar, 4 for line)
+          width: [0, 4], // Define a largura das linhas (0 para barra, 4 para linha)
         },
         plotOptions: {
           bar: {
-            columnWidth: '50%',
+            columnWidth: '50%', // Largura das colunas para o gráfico de barras
           },
         },
       }}
@@ -37,15 +37,15 @@ const Chart1 = ({ categories, dataPreco, dataQuantidade }) => {
         {
           name: 'Quantidade',
           type: 'column',
-          data: dataQuantidade,
+          data: dataQuantidade, // Dados para a série de Quantidade (gráfico de barras)
         },
         {
           name: 'Preço',
           type: 'line',
-          data: dataPreco,
+          data: dataPreco, // Dados para a série de Preço (gráfico de linha)
         },
       ]}
-      height={350}
+      height={350} // Altura do gráfico
     />
   );
 };

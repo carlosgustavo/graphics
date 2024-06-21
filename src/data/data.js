@@ -233,7 +233,7 @@ export const data2 = [
     "fabricante": "Fabricante Z"
   }
 ]
-export const data3 = [
+export const data3=[
   {
     "id": 1,
     "nome": "Alice",
@@ -355,7 +355,7 @@ export const data3 = [
     "fabricante": "Fabricante Z"
   }
 ]
-export const data4 = [
+export const data4 =[
   {
     "id": 1,
     "nome": "Projeto A",
@@ -467,7 +467,7 @@ export const data4 = [
     "fabricante": "Fabricante Z"
   }
 ]
-export const data5 = [
+export const data5=[
   {
     "id": 1001,
     "data": "2024-06-01",
