@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Select } from 'antd';
 import { data1, data2, data3, data4, data5 } from './data/data';
 import Page1 from './page/Page1'
+import Page2 from './page/Page2'
+
 
 const { Option } = Select;
 
@@ -30,6 +32,11 @@ const CustomSelect = () => {
       {selectedValue === "option1" && (
         <div style={{ marginTop: 20 }}>
           <Page1 data={data1} />
+        </div>
+      )}
+      {selectedValue === "option2" && (
+        <div style={{ marginTop: 20 }}>
+          <Page2 data={data2} />
         </div>
       )}
     </div>
