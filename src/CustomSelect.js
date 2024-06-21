@@ -3,6 +3,8 @@ import { Select } from 'antd';
 import { data1, data2, data3, data4, data5 } from './data/data';
 import Page1 from './page/Page1'
 import Page2 from './page/Page2'
+import Page3 from './page/Page3'
+
 
 
 const { Option } = Select;
@@ -37,6 +39,11 @@ const CustomSelect = () => {
       {selectedValue === "option2" && (
         <div style={{ marginTop: 20 }}>
           <Page2 data={data2} />
+        </div>
+      )}
+        {selectedValue === "option3" && (
+        <div style={{ marginTop: 20 }}>
+          <Page3 data={data3} />
         </div>
       )}
     </div>
